@@ -13,7 +13,7 @@ class App extends Component {
       error: null,
       isLoaded: false,
       jokes: [],
-      search
+      search: ''
     };
   }
 
@@ -41,7 +41,15 @@ class App extends Component {
   }
 
   render() {
-    const { error, isLoaded, jokes } = this.state;
+    let { error, isLoaded, jokes, search } = this.state;
+
+    //filter the results prior to rendering
+    //state change will 
+    if (search) {
+			jokes = jokes.filter(row => {
+				return String(row.id).includes(search) || row.type.includes(search) ||row.setup.includes(search) || row.punchline.includes(search)
+			})
+		}
 
     const columns = [{
       Header: 'Id',
@@ -66,11 +74,9 @@ class App extends Component {
       return (
         <div className="App">
           {/* <header className="App-header"></header> */}
-
-          <h1>React-Table - Basic Example</h1>
-				  Search: 
           <input 
             value={this.state.search}
+            placeholder='Search...'
             onChange={e => this.setState({search: e.target.value})}
           />
 
@@ -83,7 +89,6 @@ class App extends Component {
                 desc: false
               }
             ]}
-            filterable={true}
           />
         </div>
         
