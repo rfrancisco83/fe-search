@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+// JS (Webpack)
+import 'react-table/react-table.css'
+import ReactTable from "react-table";
 
 class App extends Component {
 
@@ -9,7 +12,8 @@ class App extends Component {
     this.state = {
       error: null,
       isLoaded: false,
-      jokes: []
+      jokes: [],
+      search
     };
   }
 
@@ -38,6 +42,22 @@ class App extends Component {
 
   render() {
     const { error, isLoaded, jokes } = this.state;
+
+    const columns = [{
+      Header: 'Id',
+      accessor: 'id' 
+    }, {
+      Header: 'Type',
+      accessor: 'type'
+    }, {
+      Header: 'Setup',
+      accessor: 'setup' 
+    }, {
+      Header: 'Punch Line',
+      accessor: 'punchline'
+    }]
+
+
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -45,14 +65,26 @@ class App extends Component {
     } else {
       return (
         <div className="App">
-          <header className="App-header"></header>
-          <ul>
-            {jokes.map(joke => (
-              <li key={joke.id}>
-                {joke.id} {joke.type} {joke.setup} {joke.punchline}
-              </li>
-            ))}
-          </ul>
+          {/* <header className="App-header"></header> */}
+
+          <h1>React-Table - Basic Example</h1>
+				  Search: 
+          <input 
+            value={this.state.search}
+            onChange={e => this.setState({search: e.target.value})}
+          />
+
+          <ReactTable
+            data={jokes}
+            columns={columns}
+            defaultSorted={[
+              {
+                id: "setup",
+                desc: false
+              }
+            ]}
+            filterable={true}
+          />
         </div>
         
       );
