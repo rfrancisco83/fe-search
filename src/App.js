@@ -3,7 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 // JS (Webpack)
 import 'react-table/react-table.css'
-import ReactTable from "react-table";
+import ReactTable from 'react-table';
+import ReactTableDefaults from 'react-table';
 
 class App extends Component {
 
@@ -44,7 +45,7 @@ class App extends Component {
     let { error, isLoaded, jokes, search } = this.state;
 
     //filter the results prior to rendering
-    //state change will 
+    //state change will trigger udpate of component
     if (search) {
 			jokes = jokes.filter(row => {
 				return String(row.id).includes(search) || row.type.includes(search) ||row.setup.includes(search) || row.punchline.includes(search)
@@ -53,16 +54,24 @@ class App extends Component {
 
     const columns = [{
       Header: 'Id',
-      accessor: 'id' 
+      accessor: 'id',
+      headerClassName: 'd-none d-md-block col-md-4',
+      className: 'd-none d-md-block col-md-4',
     }, {
       Header: 'Type',
-      accessor: 'type'
+      accessor: 'type',
+      headerClassName: 'd-none d-md-block col-md-4',
+      className: 'd-none d-md-block col-md-4',
     }, {
       Header: 'Setup',
-      accessor: 'setup' 
+      accessor: 'setup',
+      headerClassName: 'col-md-4 col-sm-2 ',
+      className: 'col-md-4 col-sm-2',
     }, {
       Header: 'Punch Line',
-      accessor: 'punchline'
+      accessor: 'punchline',
+      headerClassName: 'col-md-4 col-sm-2 ',
+      className: 'col-md-4 col-sm-2 ',
     }]
 
 
@@ -72,15 +81,43 @@ class App extends Component {
       return <div>Loading...</div>;
     } else {
       return (
-        <div className="App">
-          {/* <header className="App-header"></header> */}
-          <input 
-            value={this.state.search}
-            placeholder='Search...'
-            onChange={e => this.setState({search: e.target.value})}
-          />
-
+        <div className="App container-fluid">
+          <header>
+            <div class="row float-left">
+              <div class="col-4">
+                  <a
+                  className="App-link"
+                  href="https://github.com/rfrancisco83/fe-search"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Git Repo for FE Project
+                </a>
+              </div>
+              <div class="col-4">
+                <a
+                  className="App-link"
+                  href="https://github.com/rfrancisco83/search-api"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Git Repo for REST API
+                </a>
+              </div>
+              <div class="col-4">Demo app displaying search and REST API.</div>
+            </div>
+            
+            <div class="float-left d-block">
+              <input 
+                value={this.state.search}
+                placeholder='Search...'
+                onChange={e => this.setState({search: e.target.value})}
+              />
+            </div>
+          </header>
+          
           <ReactTable
+            className="container-fluid -striped -highlight"
             data={jokes}
             columns={columns}
             defaultSorted={[
