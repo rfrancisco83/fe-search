@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 // JS (Webpack)
 import 'react-table/react-table.css'
 import ReactTable from 'react-table';
-import ReactTableDefaults from 'react-table';
 
 class App extends Component {
 
@@ -81,38 +79,43 @@ class App extends Component {
       return <div>Loading...</div>;
     } else {
       return (
-        <div className="App container-fluid">
+        <div className="App">
           <header>
-            <div class="row float-left">
-              <div class="col-4">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-4">
+                    <a
+                    className="App-link"
+                    href="https://github.com/rfrancisco83/fe-search"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Git Repo for FE Project
+                  </a>
+                </div>
+                <div class="col-4">
                   <a
-                  className="App-link"
-                  href="https://github.com/rfrancisco83/fe-search"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Git Repo for FE Project
-                </a>
+                    className="App-link"
+                    href="https://github.com/rfrancisco83/search-api"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Git Repo for REST API
+                  </a>
+                </div>
+                <div class="col-4">Demo app displaying search and REST API.</div>
               </div>
-              <div class="col-4">
-                <a
-                  className="App-link"
-                  href="https://github.com/rfrancisco83/search-api"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Git Repo for REST API
-                </a>
+              <div class="row">
+                <div class="col">
+                  <div class="float-left d-block">
+                    <input 
+                      value={this.state.search}
+                      placeholder='Search...'
+                      onChange={e => this.setState({search: e.target.value})}
+                    />
+                  </div>
+                </div>
               </div>
-              <div class="col-4">Demo app displaying search and REST API.</div>
-            </div>
-            
-            <div class="float-left d-block">
-              <input 
-                value={this.state.search}
-                placeholder='Search...'
-                onChange={e => this.setState({search: e.target.value})}
-              />
             </div>
           </header>
           
