@@ -4,6 +4,7 @@ import './App.css';
 // JS (Webpack)
 import 'react-table/react-table.css'
 import ReactTable from 'react-table';
+import ReactTableDefaults from 'react-table';
 
 class App extends Component {
 
@@ -15,6 +16,14 @@ class App extends Component {
       jokes: [],
       search: ''
     };
+
+    Object.assign(ReactTableDefaults, {
+      column: {
+        style: {
+          width: 10
+        }
+      }
+    });
   }
 
 
@@ -44,7 +53,7 @@ class App extends Component {
     let { error, isLoaded, jokes, search } = this.state;
 
     //filter the results prior to rendering
-    //state change will 
+    //state change will trigger udpate of component
     if (search) {
 			jokes = jokes.filter(row => {
 				return String(row.id).includes(search) || row.type.includes(search) ||row.setup.includes(search) || row.punchline.includes(search)
@@ -54,17 +63,28 @@ class App extends Component {
     const columns = [{
       Header: 'Id',
       accessor: 'id',
-      className: 'hidden-xs'
+      headerClassName: 'hidden-md-down w-auto',
+      className: 'hidden-md-down w-auto',
+      maxWidth: '10%'
+      
     }, {
       Header: 'Type',
       accessor: 'type',
-      className: 'hidden-xs'
+      headerClassName: 'hidden-md-down w-auto',
+      className: 'hidden-md-down w-auto',
+      maxWidth: '30%'
     }, {
       Header: 'Setup',
-      accessor: 'setup' 
+      accessor: 'setup',
+      headerClassName: 'w-auto',
+      className: 'w-auto',
+      maxWidth: '30%' 
     }, {
       Header: 'Punch Line',
-      accessor: 'punchline'
+      accessor: 'punchline',
+      headerClassName: 'w-auto',
+      className: 'w-auto',
+      maxWidth: '30%'
     }]
 
 
@@ -83,7 +103,7 @@ class App extends Component {
           />
 
           <ReactTable
-            className="table-responsive -striped -highlight"
+            className="container-fluid -striped -highlight"
             data={jokes}
             columns={columns}
             defaultSorted={[
