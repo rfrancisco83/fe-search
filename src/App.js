@@ -55,23 +55,23 @@ class App extends Component {
     const columns = [{
       Header: 'Id',
       accessor: 'id',
-      headerClassName: 'd-none d-md-block w-auto',
-      className: 'd-none d-md-block w-auto',
+      headerClassName: 'd-none d-md-block col-md-4',
+      className: 'd-none d-md-block col-md-4',
     }, {
       Header: 'Type',
       accessor: 'type',
-      headerClassName: 'd-none d-md-block  w-auto',
-      className: 'd-none d-md-block w-auto',
+      headerClassName: 'd-none d-md-block col-md-4',
+      className: 'd-none d-md-block col-md-4',
     }, {
       Header: 'Setup',
       accessor: 'setup',
-      headerClassName: 'w-auto',
-      className: 'w-auto',
+      headerClassName: 'col-md-4 col-sm-2 ',
+      className: 'col-md-4 col-sm-2',
     }, {
       Header: 'Punch Line',
       accessor: 'punchline',
-      headerClassName: 'w-auto',
-      className: 'w-auto',
+      headerClassName: 'col-md-4 col-sm-2 ',
+      className: 'col-md-4 col-sm-2 ',
     }]
 
 
@@ -83,7 +83,7 @@ class App extends Component {
       return (
         <div className="App container-fluid">
           
-          <div class="float-left">
+          <div class="float-left d-block">
             <input 
               value={this.state.search}
               placeholder='Search...'
