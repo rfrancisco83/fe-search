@@ -82,15 +82,40 @@ class App extends Component {
     } else {
       return (
         <div className="App container-fluid">
+          <header>
+            <div class="row float-left">
+              <div class="col-4">
+                  <a
+                  className="App-link"
+                  href="https://github.com/rfrancisco83/fe-search"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Git Repo for FE Project
+                </a>
+              </div>
+              <div class="col-4">
+                <a
+                  className="App-link"
+                  href="https://github.com/rfrancisco83/search-api"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Git Repo for REST API
+                </a>
+              </div>
+              <div class="col-4">Demo app displaying search and REST API.</div>
+            </div>
+            
+            <div class="float-left d-block">
+              <input 
+                value={this.state.search}
+                placeholder='Search...'
+                onChange={e => this.setState({search: e.target.value})}
+              />
+            </div>
+          </header>
           
-          <div class="float-left d-block">
-            <input 
-              value={this.state.search}
-              placeholder='Search...'
-              onChange={e => this.setState({search: e.target.value})}
-            />
-          </div>
-
           <ReactTable
             className="container-fluid -striped -highlight"
             data={jokes}
