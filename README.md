@@ -1,3 +1,8 @@
+See below for instructions on running. This project requires the following:
+* Node v10.13.0
+* NPM 6.4.1
+* Running [Search API](https://github.com/rfrancisco83/search-api) at port 8080.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
