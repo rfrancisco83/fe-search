@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 // JS (Webpack)
 import 'react-table/react-table.css'
-import ReactTable from "react-table";
+import ReactTable from 'react-table';
 
 class App extends Component {
 
@@ -53,10 +53,12 @@ class App extends Component {
 
     const columns = [{
       Header: 'Id',
-      accessor: 'id' 
+      accessor: 'id',
+      className: 'hidden-xs'
     }, {
       Header: 'Type',
-      accessor: 'type'
+      accessor: 'type',
+      className: 'hidden-xs'
     }, {
       Header: 'Setup',
       accessor: 'setup' 
@@ -72,8 +74,8 @@ class App extends Component {
       return <div>Loading...</div>;
     } else {
       return (
-        <div className="App">
-          {/* <header className="App-header"></header> */}
+        <div className="App container-fluid">
+          
           <input 
             value={this.state.search}
             placeholder='Search...'
@@ -81,6 +83,7 @@ class App extends Component {
           />
 
           <ReactTable
+            className="table-responsive -striped -highlight"
             data={jokes}
             columns={columns}
             defaultSorted={[
