@@ -16,14 +16,6 @@ class App extends Component {
       jokes: [],
       search: ''
     };
-
-    Object.assign(ReactTableDefaults, {
-      column: {
-        style: {
-          width: 10
-        }
-      }
-    });
   }
 
 
@@ -63,28 +55,23 @@ class App extends Component {
     const columns = [{
       Header: 'Id',
       accessor: 'id',
-      headerClassName: 'hidden-md-down w-auto',
-      className: 'hidden-md-down w-auto',
-      maxWidth: '10%'
-      
+      headerClassName: 'd-none d-md-block w-auto',
+      className: 'd-none d-md-block w-auto',
     }, {
       Header: 'Type',
       accessor: 'type',
-      headerClassName: 'hidden-md-down w-auto',
-      className: 'hidden-md-down w-auto',
-      maxWidth: '30%'
+      headerClassName: 'd-none d-md-block  w-auto',
+      className: 'd-none d-md-block w-auto',
     }, {
       Header: 'Setup',
       accessor: 'setup',
       headerClassName: 'w-auto',
       className: 'w-auto',
-      maxWidth: '30%' 
     }, {
       Header: 'Punch Line',
       accessor: 'punchline',
       headerClassName: 'w-auto',
       className: 'w-auto',
-      maxWidth: '30%'
     }]
 
 
@@ -96,11 +83,13 @@ class App extends Component {
       return (
         <div className="App container-fluid">
           
-          <input 
-            value={this.state.search}
-            placeholder='Search...'
-            onChange={e => this.setState({search: e.target.value})}
-          />
+          <div class="float-left">
+            <input 
+              value={this.state.search}
+              placeholder='Search...'
+              onChange={e => this.setState({search: e.target.value})}
+            />
+          </div>
 
           <ReactTable
             className="container-fluid -striped -highlight"
